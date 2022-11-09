@@ -13,5 +13,5 @@ public class BorderApiRequest {
     private String borderContents;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
-    private String customerCustId;
+    private String customer_CUST_ID;
 }

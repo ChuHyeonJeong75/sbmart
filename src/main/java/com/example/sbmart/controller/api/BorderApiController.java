@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/sbmart/border")
-public class BorderApiController extends CrudController<BorderApiRequest, BorderApiResponse, Border>{
+public class BorderApiController extends CrudController<BorderApiRequest, BorderApiResponse, Border> {
 }

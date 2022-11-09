@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor@AllArgsConstructor@Data@Entity@Builder
-@ToString(exclude = "customer")
+//@ToString(exclude = "customer")
 @EntityListeners(AuditingEntityListener.class)
 @Accessors(chain = true)
 public class Border {
@@ -26,7 +26,7 @@ public class Border {
     private LocalDateTime updateDate;
 
     @ManyToOne
-    @JoinColumn(name = "customer_cust_id")
+    //@JoinColumn(name = "customer_cust_id")
     private Customer customer;
 
 }

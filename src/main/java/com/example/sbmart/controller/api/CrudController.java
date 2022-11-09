@@ -6,37 +6,33 @@ import com.example.sbmart.model.network.Header;
 import com.example.sbmart.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Component
 public abstract class CrudController<Req, Res, Entity> implements CrudInterface<Req, Res> {
 
-    @Autowired(required = true)
+    @Autowired(required = false)
     protected BaseService<Req, Res, Entity> baseService;
+
     @Override
     @PostMapping()
-    public Header<Res> create(Header<Req> request) {
-        return null;
+    public Header<Res> create(@RequestBody Header<Req> request) {
+        return baseService.create(request);
     }
 
     @Override
     @GetMapping("{t}")
-    public <T> Header<Res> read(T t) {
-        return null;
-    }
+    public <T> Header<Res> read(@PathVariable T t) { return baseService.read(t); }
 
     @Override
     @PutMapping()
-    public Header<Res> update(Header<Req> request) {
-        return null;
+    public Header<Res> update(@RequestBody Header<Req> request) {
+        return baseService.update(request);
     }
 
     @Override
     @DeleteMapping("{t}")
-    public <T> Header<Res> delete(T t) {
-        return null;
+    public <T> Header<Res> delete(@PathVariable T t) {
+        return baseService.delete(t);
     }
 }
