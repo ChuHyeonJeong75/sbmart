@@ -6,7 +6,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
-@NoArgsConstructor@AllArgsConstructor@Data@Entity
+@NoArgsConstructor@AllArgsConstructor@Data@Entity@Builder
 @EntityListeners(AuditingEntityListener.class)
 @Accessors(chain = true)
 public class Product {
