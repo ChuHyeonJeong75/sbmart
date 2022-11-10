@@ -3,6 +3,7 @@ package com.example.sbmart.model.entity;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,8 +15,14 @@ import java.util.List;
 public class Customer {
 
     @Id
+    @Column(name = "cust_id")
     private String custId;
 
-    @OneToMany(fetch = FetchType.LAZY , mappedBy = "customer")
+    private String password;
+    private String name;
+    private Integer age;
+    private String job;
+
+    @OneToMany(fetch = FetchType.LAZY , mappedBy = "customer" )
     private List<Border> borderList;
 }

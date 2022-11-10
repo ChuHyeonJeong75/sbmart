@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 import java.time.LocalDateTime;
 
@@ -24,7 +25,7 @@ public class Header<T> {
                 .description("ok")
                 .build();
     }
-
+    @Nullable
     public static <T> Header<T> OK(T data){
         return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
