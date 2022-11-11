@@ -13,7 +13,9 @@ public interface CrudInterface<Req, Res> {
 
  */
     Header<Res> update(Header<Req> request);
-    <T> Header<Res> delete(T t);
+   // <T> Header<Res> delete(T t);
+    //2022.11.11 변경
+    <T> Header delete(T t);
 /*
     Header delete(Integer no);
     Header delete(String cusId); //Customer만 pk가 String Type

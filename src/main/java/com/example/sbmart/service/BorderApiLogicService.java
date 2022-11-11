@@ -67,16 +67,13 @@ public class BorderApiLogicService extends BaseService<BorderApiRequest, BorderA
     }
 
     @Override
-    public <T> Header<BorderApiResponse> delete(T t) {
+    public <T> Header delete(T t) {
         Optional<Border> border = baseRepository.findById(Integer.valueOf(String.valueOf(t)));
-/*
+
         return border.map(delBorder ->{
             baseRepository.delete(delBorder);
             return Header.OK();
-            }).orElseGet(()->Header.ERROR("데이터 삭제 실패"));
-*/
-    return null;
+            }).orElseGet(()-> Header.ERROR("데이터 삭제 실패"));
+
     }
-
-
 }
