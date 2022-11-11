@@ -2,14 +2,17 @@ package com.example.sbmart.model.entity;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.List;
 
-@NoArgsConstructor@AllArgsConstructor@Data@Entity@Builder
-@ToString(exclude = {"borderList"})
+@Data@NoArgsConstructor@AllArgsConstructor@Entity
+@DynamicUpdate(value = true)  // 수정할 데이타만 업뎃
+@Builder
+@ToString(exclude = "borderList")
 @EntityListeners(AuditingEntityListener.class)
 @Accessors(chain = true)
 public class Customer {

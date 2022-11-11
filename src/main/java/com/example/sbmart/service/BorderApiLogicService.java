@@ -25,6 +25,7 @@ public class BorderApiLogicService extends BaseService<BorderApiRequest, BorderA
                 .createDate(border.getCreateDate())
                 .updateDate(border.getUpdateDate())
                 .customer_cust_id(border.getCustomer().getCustId())
+                .customer_cust_name(border.getCustomer().getName())
                 .build();
         System.out.println("[borderApiResponse] = "+borderApiResponse);
         return Header.OK(borderApiResponse);
@@ -36,7 +37,7 @@ public class BorderApiLogicService extends BaseService<BorderApiRequest, BorderA
 
         Border border = Border.builder()
                 .borderTitle(borderApiRequest.getBorderTitle())
-                .borderContents(borderApiRequest.getBorderContents())
+                .borderContents(borderApiRequest.getBorderContents().replace("\n","<br>"))
                 .customer(customerRepository.getById(borderApiRequest.getCustomer_cust_id()))
                 .build();
         Border newBorder = baseRepository.save(border);

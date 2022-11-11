@@ -16,4 +16,5 @@ public class BorderApiResponse {
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
     private String customer_cust_id;
+    private String customer_cust_name;
 }

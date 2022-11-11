@@ -8,10 +8,7 @@ import org.springframework.lang.Nullable;
 
 import java.time.LocalDateTime;
 
-@Builder
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder@Data@NoArgsConstructor@AllArgsConstructor
 public class Header<T> {
     private LocalDateTime transactionTime;
     private String resultCode;
