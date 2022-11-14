@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 public class BorderApiLogicService extends BaseService<BorderApiRequest, BorderApiResponse, Border> {
-    private final CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
     public BorderApiLogicService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
@@ -40,14 +40,13 @@ public class BorderApiLogicService extends BaseService<BorderApiRequest, BorderA
                 .borderContents(borderApiRequest.getBorderContents().replace("\n","<br>"))
                 .customer(customerRepository.getById(borderApiRequest.getCustomer_cust_id()))
                 .build();
-        Border newBorder = baseRepository.save(border);
-        return response(newBorder);
+        return response(baseRepository.save(border));
     }
 
     @Override
     public <T> Header<BorderApiResponse> read(T t) {
         Optional<Border> border = baseRepository.findById(Integer.valueOf(String.valueOf(t)));
-
+        System.out.println("border =" + border.toString());
         return border.map(readBorder ->response(readBorder))
                 .orElseGet(()->Header.ERROR("No data"));
     }

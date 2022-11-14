@@ -4,7 +4,6 @@ package com.example.sbmart.service;
 import com.example.sbmart.model.entity.Customer;
 import com.example.sbmart.model.network.Header;
 import com.example.sbmart.model.network.request.CustomerApiRequest;
-import com.example.sbmart.model.network.response.BorderApiResponse;
 import com.example.sbmart.model.network.response.CustomerApiResponse;
 import com.example.sbmart.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,15 +40,13 @@ public class CustomerApiLogicService extends BaseService<CustomerApiRequest, Cus
                 .age(customerApiRequest.getAge())
                 .job(customerApiRequest.getJob())
                 .build();
-        customerRepository.save(customer);
-
-        return response(customer);
+        return response(customerRepository.save(customer));
     }
 
     @Override
     public <T> Header<CustomerApiResponse> read(T t) {
         Optional<Customer> customer = customerRepository.findById(String.valueOf(t));
-        System.out.println("customerId = "+String.valueOf(t));
+        //System.out.println("customerId = "+String.valueOf(t));
         return customer.map(readCustomer ->response(readCustomer)
                 ).orElseGet(()->Header.ERROR("No data"));
     }
@@ -59,15 +56,13 @@ public class CustomerApiLogicService extends BaseService<CustomerApiRequest, Cus
     public Header<CustomerApiResponse> update(Header<CustomerApiRequest> request) {
         CustomerApiRequest customerApiRequest = request.getData();
         Optional<Customer> customer = customerRepository.findById(customerApiRequest.getCustId());
-        return customer.  map(updateCust->{
+        return customer.map(updateCust->{
             updateCust.setCustId(customerApiRequest.getCustId())
                     //.setPassword(customerApiRequest.getPassword())
                     .setName(customerApiRequest.getName())
                     //.setAge(customerApiRequest.getAge())
-                    .setJob(customerApiRequest.getJob())
-                     ;
-           //customerRepository.save(updateCust);
-           Header.OK(updateCust);
+                    .setJob(customerApiRequest.getJob());
+
            return response(customerRepository.save(updateCust));
         }).orElseGet(()->Header.ERROR("데이터 수정 실패!"));
     }

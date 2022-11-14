@@ -21,17 +21,19 @@ public class OrderTbl {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderNo;
 
-    private String orderCount;
+    private Integer orderCount;
     private String address;
 
     @CreatedDate
     private LocalDateTime orderDate;
 
     //N:1
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "customer_cust_id")
     private Customer customer;
 
     //M:1
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "Product_product_no")
     private Product product;
 }
